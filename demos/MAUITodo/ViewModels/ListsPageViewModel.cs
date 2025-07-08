@@ -27,7 +27,7 @@ public class ListsPageViewModel : ViewModelBase
     public ICommand SelectListCommand { get; }
 
     // Expose database for navigation purposes (temporary until proper navigation service)
-    public PowerSyncData GetDatabase() => _database;
+    //public PowerSyncData GetDatabase() => _database;
 
     public ListsPageViewModel(PowerSyncData database, IDialogService dialogService, INavigationService navigationService)
     {
@@ -212,9 +212,9 @@ public class ListsPageViewModel : ViewModelBase
         }
     }
 
-    private async Task NavigateToTodoListAsync(TodoList list)
-    {
-        // Navigation would be handled by a proper navigation service
-        await Task.Delay(0);
-    }
+    //private async Task NavigateToTodoListAsync(TodoList list)
+    //{
+    //    // Navigation would be handled by a proper navigation service
+    //    await Task.Delay(0);
+    //}
 }

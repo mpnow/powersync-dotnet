@@ -22,7 +22,7 @@ public class PowerSyncData
         var logger = loggerFactory.CreateLogger("PowerSyncLogger");
 
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "example.db");
-        var factory = new MAUISQLiteDBOpenFactory(new MDSQLiteOpenFactoryOptions()
+        var factory = new CustomSQLiteDBOpenFactory(new MDSQLiteOpenFactoryOptions()
         {
             DbFilename = dbPath
         });
@@ -38,7 +38,7 @@ public class PowerSyncData
         
         Db.Connect(nodeConnector);
     }
-    
+
     public async Task SaveListAsync(TodoList list)
     {
         if (list.ID != "")
