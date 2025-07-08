@@ -19,7 +19,8 @@
                         x:Name="ListsCollection"
                         ItemsSource="{Binding TodoLists}"
                         SelectionMode="Single"
-                        SelectionChanged="OnListSelected">
+                        SelectionChangedCommand="{Binding SelectListCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference ListsCollection}}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">

@@ -27,6 +27,7 @@ public static class MauiProgram
 		
 		// Register services
 		builder.Services.AddSingleton<IDialogService, DialogService>();
+		builder.Services.AddSingleton<INavigationService, NavigationService>();
 		
 		// Register ViewModels
 		builder.Services.AddTransient<ListsPageViewModel>();

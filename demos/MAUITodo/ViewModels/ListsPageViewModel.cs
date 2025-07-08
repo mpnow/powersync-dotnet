@@ -11,6 +11,7 @@ public class ListsPageViewModel : ViewModelBase
 {
     private readonly PowerSyncData _database;
     private readonly IDialogService _dialogService;
+    private readonly INavigationService _navigationService;
     private string _wifiIconSource = "wifi_off.png";
 
     public ObservableCollection<TodoList> TodoLists { get; }
@@ -28,10 +29,11 @@ public class ListsPageViewModel : ViewModelBase
     // Expose database for navigation purposes (temporary until proper navigation service)
     public PowerSyncData GetDatabase() => _database;
 
-    public ListsPageViewModel(PowerSyncData database, IDialogService dialogService)
+    public ListsPageViewModel(PowerSyncData database, IDialogService dialogService, INavigationService navigationService)
     {
         _database = database;
         _dialogService = dialogService;
+        _navigationService = navigationService;
         TodoLists = new ObservableCollection<TodoList>();
 
         AddListCommand = new AsyncRelayCommand(ExecuteAddListAsync);
@@ -206,7 +208,7 @@ public class ListsPageViewModel : ViewModelBase
     {
         if (parameter is TodoList selectedList)
         {
-            await NavigateToTodoListAsync(selectedList);
+            await _navigationService.NavigateToTodoListPage(_database, selectedList, _dialogService);
         }
     }
 

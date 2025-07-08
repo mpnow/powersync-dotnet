@@ -7,12 +7,14 @@ public partial class ListsPage : ContentPage
 {
     private readonly ListsPageViewModel _viewModel;
     private readonly IDialogService _dialogService;
+    private readonly INavigationService _navigationService;
 
-    public ListsPage(ListsPageViewModel viewModel, IDialogService dialogService)
+    public ListsPage(ListsPageViewModel viewModel, IDialogService dialogService, INavigationService navigationService)
     {
         InitializeComponent();
         _viewModel = viewModel;
         _dialogService = dialogService;
+        _navigationService = navigationService;
         BindingContext = _viewModel;
     }
 
@@ -20,16 +22,5 @@ public partial class ListsPage : ContentPage
     {
         base.OnAppearing();
         await _viewModel.InitializeAsync();
-    }
-
-    private async void OnListSelected(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is MAUITodo.Models.TodoList selectedList)
-        {
-            // This navigation logic would need to be moved to a navigation service
-            // For now, keeping the direct navigation but this should be refactored
-            await Navigation.PushAsync(new TodoListPage(_viewModel.GetDatabase(), selectedList, _dialogService));
-            ListsCollection.SelectedItem = null;
-        }
     }
 }
