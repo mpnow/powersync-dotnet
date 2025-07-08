@@ -11,12 +11,13 @@
 
     <Grid RowDefinitions="Auto,*">
         <Button Text="New List" 
-                Clicked="OnAddClicked"
+                Command="{Binding AddListCommand}"
                 Margin="10"
                 HorizontalOptions="End"/>
         
         <CollectionView Grid.Row="1"
                         x:Name="ListsCollection"
+                        ItemsSource="{Binding TodoLists}"
                         SelectionMode="Single"
                         SelectionChanged="OnListSelected">
             <CollectionView.ItemTemplate>
@@ -33,7 +34,7 @@
                                    VerticalOptions="Center"/>
                             <Button Grid.Column="1"
                                     Text="Delete"
-                                    Clicked="OnDeleteClicked"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteListCommand}"
                                     CommandParameter="{Binding .}"/>
                         </Grid>
                     </Grid>

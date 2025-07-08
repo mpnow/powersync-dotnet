@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using MAUITodo.Data;
 using MAUITodo.Views;
+using MAUITodo.ViewModels;
+using MAUITodo.Services;
 
 namespace MAUITodo;
 
@@ -19,7 +21,18 @@ public static class MauiProgram
 			});
 		builder.Logging.SetMinimumLevel(LogLevel.Debug);
 		builder.Logging.AddDebug();
+		
+		// Register data services
 		builder.Services.AddSingleton<PowerSyncData>();
+		
+		// Register services
+		builder.Services.AddSingleton<IDialogService, DialogService>();
+		
+		// Register ViewModels
+		builder.Services.AddTransient<ListsPageViewModel>();
+		builder.Services.AddTransient<TodoListPageViewModel>();
+		
+		// Register Views
 		builder.Services.AddTransient<ListsPage>();
 		builder.Services.AddTransient<TodoListPage>();
 		builder.Services.AddTransient<SqlConsolePage>();

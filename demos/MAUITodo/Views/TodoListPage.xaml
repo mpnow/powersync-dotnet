@@ -5,12 +5,13 @@
              Title="{Binding ListName}">
     <Grid RowDefinitions="Auto,*">
         <Button Text="New Todo" 
-                Clicked="OnAddClicked"
+                Command="{Binding AddTodoCommand}"
                 Margin="10"
                 HorizontalOptions="End"/>
         
         <CollectionView Grid.Row="1"
                         x:Name="TodoItemsCollection"
+                        ItemsSource="{Binding TodoItems}"
                         SelectionMode="Single"
                         SelectionChanged="OnItemSelected">
             <CollectionView.ItemTemplate>
@@ -30,7 +31,7 @@
                                              CheckedChanged="OnCheckBoxChanged"
                                              VerticalOptions="Center"/>
                                     <Button Text="Delete"
-                                            Clicked="OnDeleteClicked"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteTodoCommand}"
                                             CommandParameter="{Binding .}"/>
                                 </HorizontalStackLayout>
                             </Grid>
