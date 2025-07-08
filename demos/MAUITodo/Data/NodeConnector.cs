@@ -25,7 +25,8 @@ public class NodeConnector : IPowerSyncBackendConnector
         UserId = LoadOrGenerateUserId();
 
         BackendUrl = "http://localhost:6060";
-        PowerSyncUrl = "http://localhost:8080";
+        //PowerSyncUrl = "http://localhost:8080";
+        PowerSyncUrl = "https://685c28922f09c850febaec35.powersync.journeyapps.com";
 
         clientId = null;
     }
