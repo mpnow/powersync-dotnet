@@ -21,6 +21,10 @@ public partial class ListsPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+        
+        // Clear the selection to allow re-selection of the same item
+        ListsCollection.SelectedItem = null;
+        
         await _viewModel.InitializeAsync();
     }
 }

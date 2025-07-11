@@ -27,9 +27,14 @@
                                 <HorizontalStackLayout Grid.Column="1" 
                                                      Spacing="10"
                                                      VerticalOptions="Center">
-                                    <CheckBox IsChecked="{Binding Completed}"
-                                             CheckedChanged="OnCheckBoxChanged"
-                                             VerticalOptions="Center"/>
+                                    <CheckBox IsChecked="{Binding Completed, Mode=OneWay}"
+                                              VerticalOptions="Center">
+                                        <CheckBox.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleCompletedCommand}"
+                                                CommandParameter="{Binding .}" />
+                                        </CheckBox.GestureRecognizers>
+                                    </CheckBox>
                                     <Button Text="Delete"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteTodoCommand}"
                                             CommandParameter="{Binding .}"/>

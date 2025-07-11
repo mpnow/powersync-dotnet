@@ -38,20 +38,5 @@ public partial class TodoListPage : ContentPage
         }
     }
 
-    private async void OnCheckBoxChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (sender is CheckBox checkBox && 
-            checkBox.Parent?.Parent?.BindingContext is TodoItem todo)
-        {
-            if (_viewModel.ToggleCompletedCommand is AsyncRelayCommand asyncCommand)
-            {
-                await asyncCommand.ExecuteAsync(todo);
-            }
-            else
-            {
-                _viewModel.ToggleCompletedCommand.Execute(todo);
-            }
-        }
-    }
 }
 
